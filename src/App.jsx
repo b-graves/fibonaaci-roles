@@ -10,6 +10,8 @@ function App() {
   //    ["black", "blue", "white"],
   //    ["white", "black", "red"],
   // ]
+  //
+  // the initial value of this is set to [], i.e. we start with no squares
   const [squares, setSquares] = useState([]);
 
   const fibonacciNumber = () => {
@@ -66,9 +68,12 @@ function App() {
   };
 
   return (
+    // the outermost container of the app
     <div className="App">
+      {/* the section of the screen where the grid is displayed */}
       <div className="grid">
         {squares.length ? (
+          //  if we have some squares to render, loop over those rows of squares creating divs of that colour
           squares.map((row) => (
             <div className="row">
               {row.map((square) => (
@@ -80,10 +85,13 @@ function App() {
             </div>
           ))
         ) : (
+          //  if no squares have been created yet, instruct the user on how to create squares
           <div className="instruction">PRESS ROLL TO START </div>
         )}
       </div>
+      {/* the section of the screen where the roll button is displayed */}
       <div className="controls">
+        {/* a button where every time we click it the dice is rolled */}
         <button onClick={rollDice} className="roll-button">
           ROLL
         </button>

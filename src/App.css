@@ -1,60 +1,70 @@
 .App {
-  background-color: lightgrey;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
+  background-color: lightgrey; /* sets the background colour of the app  */
+  width: 100vw; /* sets the app to fill 100% of the width of the screen  */
+  height: 100vh; /* sets the app to fill 100% of the height of the screen  */
+  display: flex; /* allows components within the app to fill the available space  */
 }
 
 .controls {
-  flex: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
+  flex: auto; /* fill the available space  */
+  display: flex; /* allows subcomponents to fill the available space  */
+  align-items: center; /* horizontally align items to the center  */
+  justify-content: center; /* vertically align items to the center  */
+  background-color: white; /* sets the background colour of the control panel */
 }
 
 .grid {
-  display: flex;
-  flex-direction: column;
+  display: flex; /* allows subcomponents to fill the available space - we want the squares to fill the whole of the canvas */
+  flex-direction: column; /* stack rows on top of eachother rather than side by side  */
 }
 
+/* if the screen is orientated in landscape */
 @media screen and (orientation: landscape) {
   .grid {
+    /* set the grid to be a square with sides equal to the height of the screen (the shorter edge) */
     width: 100vh;
     height: 100vh;
   }
+  /* place app components side by side  */
+  .App {
+    flex-direction: row;
+  }
   .controls {
-    border-left: 5px solid grey;
+    border-left: 5px solid grey; /* as the controls will be to the right of the grid, add a vertcal border to separate them  */
   }
 }
 
+/* if the screen is orientated in portrait */
 @media screen and (orientation: portrait) {
   .grid {
+    /* set the grid to be a square with sides equal to the width of the screen (the shorter edge)  */
     width: 100vw;
     height: 100vw;
   }
+  /* stack app components vertically  */
   .App {
     flex-direction: column;
   }
   .controls {
+    /* as the controls will be to the below the grid, add a horizontal border to separate them  */
     border-top: 5px solid grey;
   }
 }
 
 .instruction {
-  margin: auto;
+  margin: auto; /* use automatic margins to centre the instruction in teh grid  */
 }
 
 .row {
-  display: flex;
-  flex: auto;
+  display: flex; /* allow the squares in the row to fill all the space  */
+  flex: auto; /* fill the available vertical space on the column  */
 }
 
 .square {
-  flex: auto;
+  flex: auto; /* fill the available space in the row */
 }
 
 .roll-button {
-  font-size: 50px;
-  background-color: white;
+  font-size: 50px; /* set the font size of the text in the button  */
+  background-color: white; /* set background colour of the button  */
 }
