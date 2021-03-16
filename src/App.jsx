@@ -23,9 +23,9 @@ function App() {
     return numbers[random];
   };
 
-  const getColor = () => {
+  const getColor = (number) => {
     // this function gives us a colour based on a random fibonacci colour
-    switch (fibonacciNumber()) {
+    switch (number) {
       case 0:
         return "white";
       case 1:
@@ -43,7 +43,7 @@ function App() {
     // this function creates as many squares as we ask for populated with a colour, e.g. createSquares(5) with gives us a list of five squares like ["red", "white", "yellow", "blue", "yellow"]
     let squares = [];
     for (let i = 0; i < number; i++) {
-      squares.push(getColor());
+      squares.push(fibonacciNumber());
     }
     return squares;
   };
@@ -68,28 +68,53 @@ function App() {
   };
 
   return (
-    // the outermost container of the app
     <div className="App">
-      {/* the section of the screen where the grid is displayed */}
-      <div className="grid">
-        {squares.length ? (
-          //  if we have some squares to render, loop over those rows of squares creating divs of that colour
-          squares.map((row) => (
-            <div className="row">
-              {row.map((square) => (
-                <div
-                  className="square"
-                  style={{ backgroundColor: square }}
-                ></div>
-              ))}
-            </div>
-          ))
-        ) : (
-          //  if no squares have been created yet, instruct the user on how to create squares
-          <div className="instruction">PRESS ROLL TO START </div>
-        )}
-      </div>
-      {/* the section of the screen where the roll button is displayed */}
+      <div className="title">Fibonacci Rolls</div>
+      {squares.length ? (
+        <div className="grids">
+          <div className="grid">
+            {squares.map((row) => (
+              <div className="row">
+                {row.map((square) => (
+                  <div
+                    className="square"
+                    style={{
+                      border: "1px solid black",
+                      backgroundColor: "white",
+                    }}
+                  >
+                    <div
+                      className="label"
+                      style={{
+                        color: "black",
+                        fontSize: Math.ceil(200 / squares.length),
+                      }}
+                    >
+                      {square}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+          <div className="grid">
+            {squares.map((row) => (
+              <div className="row">
+                {row.map((square) => (
+                  <div
+                    className="square"
+                    style={{
+                      backgroundColor: getColor(square),
+                    }}
+                  ></div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div className="instruction">PRESS ROLL TO START </div>
+      )}
       <div className="controls">
         {/* a button where every time we click it the dice is rolled */}
         <button onClick={rollDice} className="roll-button">
@@ -98,6 +123,43 @@ function App() {
       </div>
     </div>
   );
+
+  // return (
+  //   // the outermost container of the app
+  //   <div className="App">
+  //     {/* the section of the screen where the grid is displayed */}
+  //     <div className="grid">
+  //       {squares.length ? (
+  //         //  if we have some squares to render, loop over those rows of squares creating divs of that colour
+  //         squares.map((row) => (
+  //           <div className="row">
+  //             {row.map((square) => (
+  //               <div
+  //                 className="square"
+  //                 style={{
+  //                   backgroundColor: getColor(square),
+  //                   color: getContrastColor(square),
+  //                 }}
+  //               >
+  //                 {square}
+  //               </div>
+  //             ))}
+  //           </div>
+  //         ))
+  //       ) : (
+  //         //  if no squares have been created yet, instruct the user on how to create squares
+  //         <div className="instruction">PRESS ROLL TO START </div>
+  //       )}
+  //     </div>
+  //     {/* the section of the screen where the roll button is displayed */}
+  //     <div className="controls">
+  //       {/* a button where every time we click it the dice is rolled */}
+  //       <button onClick={rollDice} className="roll-button">
+  //         ROLL
+  //       </button>
+  //     </div>
+  //   </div>
+  // );
 }
 
 export default App;

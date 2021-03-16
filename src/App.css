@@ -18,41 +18,64 @@
   flex-direction: column; /* stack rows on top of eachother rather than side by side  */
 }
 
+.label {
+  position: absolute;
+}
+
 /* if the screen is orientated in landscape */
 @media screen and (orientation: landscape) {
+  .grids {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .instruction {
+    height: calc(50vw - 50px);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+
   .grid {
     /* set the grid to be a square with sides equal to the height of the screen (the shorter edge) */
-    width: 100vh;
-    height: 100vh;
+    width: calc(50vw - 20px);
+    height: calc(50vw - 20px);
+    margin: 10px;
   }
   /* place app components side by side  */
   .App {
-    flex-direction: row;
-  }
-  .controls {
-    border-left: 5px solid grey; /* as the controls will be to the right of the grid, add a vertcal border to separate them  */
+    flex-direction: column;
   }
 }
 
 /* if the screen is orientated in portrait */
 @media screen and (orientation: portrait) {
-  .grid {
-    /* set the grid to be a square with sides equal to the width of the screen (the shorter edge)  */
-    width: 100vw;
-    height: 100vw;
+  .grids {
+    display: flex;
+    flex-direction: column;
   }
-  /* stack app components vertically  */
+
+  .instruction {
+    height: calc(100vh - 50px);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+
+  .grid {
+    /* set the grid to be a square with sides equal to the height of the screen (the shorter edge) */
+    width: calc(50vh - 50px);
+    height: calc(50vh - 50px);
+    margin: 5px auto;
+  }
+  /* place app components side by side  */
   .App {
     flex-direction: column;
   }
-  .controls {
-    /* as the controls will be to the below the grid, add a horizontal border to separate them  */
-    border-top: 5px solid grey;
-  }
-}
 
-.instruction {
-  margin: auto; /* use automatic margins to centre the instruction in teh grid  */
+  controls {
+    height: 80px;
+  }
 }
 
 .row {
@@ -62,9 +85,17 @@
 
 .square {
   flex: auto; /* fill the available space in the row */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .roll-button {
-  font-size: 50px; /* set the font size of the text in the button  */
+  font-size: 30px; /* set the font size of the text in the button  */
   background-color: white; /* set background colour of the button  */
+}
+
+.title {
+  font-size: 30px;
+  padding: 3px 10px;
 }
